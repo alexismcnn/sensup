@@ -1723,3 +1723,76 @@ footer .social-links a:hover {
         }
     }
 }
+
+/* ...existing code... */
+
+@media (max-width: 768px) {
+    /* Navigation mobile améliorée */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 100%;
+        background: var(--white);
+        padding: 80px 1.5rem 2rem;
+        transition: all 0.3s var(--animation-smooth);
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .nav-links.active {
+        right: 0;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .dropdown-menu {
+        position: static;
+        max-height: 0;
+        overflow: hidden;
+        box-shadow: none;
+        transition: max-height 0.3s ease;
+        background: var(--light);
+        border-radius: var(--radius);
+        margin-top: 0.5rem;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+
+    .dropdown.active .dropdown-menu {
+        max-height: 500px;
+    }
+
+    /* Cache les images d'illustration sur mobile */
+    .about-image-grid,
+    .team-image {
+        display: none;
+    }
+
+    /* Ajustements logos partenaires */
+    .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        justify-items: center;
+    }
+
+    .partner-item {
+        width: 100%;
+        max-width: 140px;
+        aspect-ratio: 3/2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem;
+    }
+
+    .partner-item img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+}
