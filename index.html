@@ -15,7 +15,7 @@
 
 </head>
 
-<body>
+<body class="home">
     <div class="mobile-warning">
         <button class="close-warning">&times;</button>
         <p>Ce site est optimisé pour une consultation sur ordinateur. Pour une meilleure expérience, nous vous recommandons d'utiliser un écran plus large.</p>
@@ -308,6 +308,14 @@
     <script src="auth.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+        const isHomePage = document.body.classList.contains('home');
+        const isMobile = window.innerWidth <= 768;
+        
+        // Réinitialiser le padding du hero si ce n'est pas la page d'accueil sur mobile
+        if (!isHomePage && isMobile) {
+            document.querySelector('.hero').style.paddingTop = '120px';
+        }
+
         const mobileWarning = document.querySelector('.mobile-warning');
         const closeWarning = document.querySelector('.close-warning');
 
