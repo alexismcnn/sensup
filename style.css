@@ -1796,3 +1796,42 @@ footer .social-links a:hover {
         object-fit: contain;
     }
 }
+
+/* ...existing code... */
+
+.mobile-warning {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+}
+
+.mobile-warning p {
+    margin: 0;
+}
+
+.mobile-warning .close-warning {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px;
+}
+
+@media (max-width: 768px) {
+    .mobile-warning {
+        display: block;
+    }
+}
