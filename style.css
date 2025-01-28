@@ -502,6 +502,113 @@ footer .social-links a:hover {
     }
 }
 
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 80%;
+        max-width: 400px;
+        background: var(--white);
+        padding: 6rem 2rem 2rem;
+        flex-direction: column;
+        gap: 1.5rem;
+        transition: right 0.3s var(--animation-smooth);
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .mobile-menu-toggle {
+        display: block !important;
+        z-index: 101;
+    }
+
+    .hero {
+        padding-top: 120px;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .services-grid,
+    .activities-list,
+    .team-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-image-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .partners-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .auth-form {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background: var(--light);
+        margin-top: 0.5rem;
+        display: none;
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+
+    .nav-links a {
+        width: 100%;
+    }
+
+    footer .container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    footer .social-links {
+        position: static;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-image-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-button {
+        width: 100%;
+    }
+}
+
 /* Animations */
 @keyframes fadeInUp {
     from {
@@ -1195,12 +1302,25 @@ footer .social-links a:hover {
 }
 
 @media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
     .about-image-grid {
         grid-template-columns: 1fr;
     }
 
+    .partner-item {
+        min-width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
     .cta-button {
         width: 100%;
+        text-align: center;
     }
 }
 
