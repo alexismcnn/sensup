@@ -1417,3 +1417,169 @@ footer .social-links a:hover {
 .user-dropdown .logout-btn:hover {
     background: #FFE9E9;
 }
+
+/* ...existing code... */
+
+@media (max-width: 768px) {
+    /* Navigation mobile améliorée */
+    .nav-links {
+        display: flex;
+        transform: translateX(100%);
+        transition: transform 0.3s var(--animation-smooth);
+        padding-bottom: 5rem; /* Espace pour le scroll */
+        overflow-y: auto; /* Permettre le défilement */
+        -webkit-overflow-scrolling: touch; /* Défilement fluide iOS */
+    }
+
+    .nav-links.active {
+        transform: translateX(0);
+    }
+
+    .nav-links a, .dropdown-trigger {
+        padding: 1rem;
+        width: 100%;
+        font-size: 1.1rem;
+    }
+
+    /* Menu burger amélioré */
+    .mobile-menu-toggle {
+        width: 44px; /* Zone de tap minimale */
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border-radius: 50%;
+        transition: background 0.3s ease;
+    }
+
+    .mobile-menu-toggle:active {
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    /* Ajustements sections */
+    .hero {
+        min-height: 100vh;
+        padding: 6rem 1rem 3rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+        line-height: 1.2;
+    }
+
+    .hero .cta-button {
+        margin-top: 3rem;
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    /* Grilles adaptatives */
+    .services-grid,
+    .team-grid,
+    .activities-list,
+    .partners-grid {
+        gap: 1rem;
+        padding: 0;
+    }
+
+    .service-card,
+    .team-card {
+        padding: 1.5rem;
+    }
+
+    /* Contact optimisé */
+    .contact-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    /* Footer compact */
+    footer {
+        padding: 1rem 0;
+        height: auto;
+    }
+
+    footer .container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    /* Améliorations dropdowns */
+    .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-menu {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --radius: 8px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .about-image-grid,
+    .partners-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    /* Ajustements tactiles */
+    input,
+    button,
+    .cta-button,
+    .nav-links a {
+        min-height: 44px; /* Hauteur minimale pour les éléments tactiles */
+    }
+
+    /* Optimisation des images */
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Espacement sections */
+    section {
+        padding: 3rem 0;
+    }
+
+    /* Ajustement notifications */
+    .notification {
+        width: calc(100% - 2rem);
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+}
+
+/* Fix iOS */
+@supports (-webkit-touch-callout: none) {
+    .nav-links {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+    
+    .hero {
+        min-height: -webkit-fill-available;
+    }
+}
