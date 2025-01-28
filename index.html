@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sensup</title>
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
     <link rel="stylesheet" href="style.css">
@@ -296,22 +296,171 @@
         </div>
     </footer>
 
-    <!-- Important: Changer l'ordre des scripts -->
+    <!-- Remplacer toute la section des scripts par ceci -->
     <script src="auth.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Gestionnaire de formulaire de connexion
-            document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            // Variables globales
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const dropdowns = document.querySelectorAll('.dropdown');
+            const authBtn = document.querySelector('.auth-btn');
+            const userMenu = document.querySelector('.user-menu');
+            const userTrigger = document.querySelector('.user-trigger');
+
+            // Gestion du menu mobile
+            function handleMobileMenu() {
+                let touchStartY = 0;
+                let touchEndY = 0;
+
+                mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+
+                // Gestion du swipe pour fermer le menu
+                navLinks.addEventListener('touchstart', (e) => {
+                    touchStartY = e.touches[0].clientY;
+                });
+
+                navLinks.addEventListener('touchend', (e) => {
+                    touchEndY = e.changedTouches[0].clientY;
+                    if (touchStartY - touchEndY > 50) { // Swipe vers le haut
+                        closeMobileMenu();
+                    }
+                });
+
+                // Fermer le menu lors du scroll
+                let lastScrollTop = 0;
+                window.addEventListener('scroll', () => {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    if (scrollTop > lastScrollTop && navLinks.classList.contains('active')) {
+                        closeMobileMenu();
+                    }
+                    lastScrollTop = scrollTop;
+                });
+
+                // Double-tap prevention
+                document.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    const link = e.target.closest('a');
+                    if (link) {
+                        e.preventDefault();
+                        link.click();
+                    }
+                }, { passive: false });
+            }
+
+            function toggleMobileMenu() {
+                const isOpen = navLinks.classList.contains('active');
+                mobileMenuToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                
+                if (!isOpen) {
+                    // Empêcher le défilement du body quand le menu est ouvert
+                    document.body.style.overflow = 'hidden';
+                    // Animation d'entrée
+                    navLinks.style.transform = 'translateX(0)';
+                } else {
+                    // Réactiver le défilement
+                    document.body.style.overflow = '';
+                    // Animation de sortie
+                    navLinks.style.transform = 'translateX(100%)';
+                }
+            }
+
+            function closeMobileMenu() {
+                navLinks.classList.remove('active');
+                mobileMenuToggle.classList.remove('active');
+                document.body.style.overflow = '';
+                navLinks.style.transform = 'translateX(100%)';
+                
+                // Fermer tous les dropdowns ouverts
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+
+            // Amélioration des dropdowns sur mobile
+            function initMobileDropdowns() {
+                dropdowns.forEach(dropdown => {
+                    const trigger = dropdown.querySelector('.dropdown-trigger');
+                    const menu = dropdown.querySelector('.dropdown-menu');
+
+                    trigger.addEventListener('click', (e) => {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            e.stopPropagation();
+
+                            // Fermer les autres dropdowns
+                            dropdowns.forEach(other => {
+                                if (other !== dropdown && other.classList.contains('active')) {
+                                    other.classList.remove('active');
+                                    other.querySelector('.dropdown-menu').style.maxHeight = '0px';
+                                }
+                            });
+
+                            // Toggle du dropdown actuel
+                            dropdown.classList.toggle('active');
+                            if (dropdown.classList.contains('active')) {
+                                menu.style.maxHeight = menu.scrollHeight + 'px';
+                            } else {
+                                menu.style.maxHeight = '0px';
+                            }
+                        }
+                    });
+                });
+            }
+
+            // Gestion des liens d'ancrage sur mobile
+            function initMobileAnchors() {
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            closeMobileMenu();
+                            
+                            const targetId = anchor.getAttribute('href');
+                            const targetElement = document.querySelector(targetId);
+                            
+                            if (targetElement) {
+                                setTimeout(() => {
+                                    targetElement.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start'
+                                    });
+                                }, 300);
+                            }
+                        }
+                    });
+                });
+            }
+
+            // Initialisation mobile
+            handleMobileMenu();
+            initMobileDropdowns();
+            initMobileAnchors();
+            
+            // Gestion de l'orientation
+            window.addEventListener('orientationchange', () => {
+                closeMobileMenu();
+                setTimeout(() => {
+                    window.scrollTo(0, window.pageYOffset);
+                }, 300);
+            });
+
+            // Gestion de l'authentification
+            function initAuth() {
+                document.getElementById('loginForm').addEventListener('submit', handleLogin);
+                document.getElementById('registerForm').addEventListener('submit', handleRegister);
+                updateUserInterface();
+            }
+
+            async function handleLogin(e) {
                 e.preventDefault();
                 const email = document.getElementById('loginEmail').value;
                 const password = document.getElementById('loginPassword').value;
 
-                // Vérification des identifiants admin
                 if (email === '123' && password === '123') {
                     showNotification('Connexion réussie! Redirection...', 'success');
-                    setTimeout(() => {
-                        window.location.href = 'admin.html';
-                    }, 1500);
+                    setTimeout(() => window.location.href = 'admin.html', 1500);
                     return;
                 }
 
@@ -325,131 +474,24 @@
                 } catch (error) {
                     showNotification('Email ou mot de passe incorrect', 'error');
                 }
-            });
+            }
 
-            // Gestionnaire de formulaire d'inscription avec debug
-            document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            async function handleRegister(e) {
                 e.preventDefault();
                 const name = document.getElementById('registerName').value;
                 const email = document.getElementById('registerEmail').value;
                 const password = document.getElementById('registerPassword').value;
 
-                console.log('Registration attempt:', { name, email });
-
                 try {
                     await auth.register(email, password, name);
-                    console.log('Registration successful');
                     showNotification(`Compte créé avec succès ! Bienvenue ${name}`, 'success');
-                    auth.debug(); // Log de l'état après inscription
-                    setTimeout(() => {
-                        toggleAuthForm('login');
-                    }, 1500);
+                    setTimeout(() => toggleAuthForm('login'), 1500);
                 } catch (error) {
-                    console.error('Registration error:', error);
                     showNotification(error.message || 'Erreur lors de la création du compte', 'error');
                 }
-            });
-
-            // Fonction de notification améliorée
-            function showNotification(message, type = 'success') {
-                const notificationId = Date.now();
-                const notification = document.createElement('div');
-                notification.className = `notification ${type}`;
-                notification.id = `notif-${notificationId}`;
-
-                const icon = type === 'success' ? 'check-circle' :
-                    type === 'error' ? 'exclamation-circle' :
-                        'user-circle';
-
-                notification.innerHTML = `
-                    <i class="fas fa-${icon}"></i>
-                    <div class="notification-content">
-                        <p>${message}</p>
-                    </div>
-                `;
-
-                // Supprimer les anciennes notifications
-                document.querySelectorAll('.notification').forEach(n => n.remove());
-
-                document.body.appendChild(notification);
-                requestAnimationFrame(() => {
-                    notification.classList.add('show');
-                });
-
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                    setTimeout(() => notification.remove(), 500);
-                }, 3000);
             }
-        });
 
-        // Fonctions de gestion de la modale
-        function showAuthModal(type = 'login') {
-            const modal = document.getElementById('authModal');
-            modal.classList.add('active');
-            toggleAuthForm(type);
-        }
-
-        function closeAuthModal() {
-            const modal = document.getElementById('authModal');
-            modal.classList.remove('active');
-        }
-
-        function toggleAuthForm(type) {
-            const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
-
-            if (type === 'login') {
-                loginForm.style.display = 'block';
-                registerForm.style.display = 'none';
-            } else {
-                loginForm.style.display = 'none';
-                registerForm.style.display = 'block';
-            }
-        }
-
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', () => {
-            const authBtn = document.querySelector('.auth-btn');
-            if (authBtn && auth.isLoggedIn()) {
-                authBtn.textContent = 'Déconnexion';
-                authBtn.onclick = () => {
-                    auth.logout();
-                    showNotification('Déconnexion réussie', 'success');
-                    authBtn.textContent = 'Connexion';
-                    authBtn.onclick = () => showAuthModal('login');
-                };
-            }
-        });
-
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const dropdowns = document.querySelectorAll('.dropdown');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-        });
-
-        dropdowns.forEach(dropdown => {
-            const trigger = dropdown.querySelector('.dropdown-trigger');
-            trigger.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    dropdown.classList.toggle('active');
-                }
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const authBtn = document.querySelector('.auth-btn');
-            const userMenu = document.querySelector('.user-menu');
-            const userTrigger = document.querySelector('.user-trigger');
-            
             function updateUserInterface() {
-                const authBtn = document.querySelector('.auth-btn');
-                const userMenu = document.querySelector('.user-menu');
-                
                 if (auth.isLoggedIn()) {
                     authBtn.style.display = 'none';
                     userMenu.style.display = 'block';
@@ -459,31 +501,74 @@
                 } else {
                     authBtn.style.display = 'block';
                     userMenu.style.display = 'none';
-                    // Réinitialiser le onclick du bouton de connexion
                     authBtn.onclick = () => showAuthModal('login');
                 }
             }
-        
-            userTrigger?.addEventListener('click', () => {
-                userMenu.classList.toggle('open');
-            });
-        
-            window.handleLogout = () => {
-                auth.logout();
-                window.location.reload(); // Recharge la page après déconnexion
-            };
-        
-            // Fermer le menu quand on clique ailleurs
+
+            // Gestion du menu utilisateur
+            if (userTrigger) {
+                userTrigger.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    userMenu.classList.toggle('open');
+                });
+            }
+
             document.addEventListener('click', (e) => {
-                if (!userMenu?.contains(e.target)) {
-                    userMenu?.classList.remove('open');
+                if (userMenu && !userMenu.contains(e.target)) {
+                    userMenu.classList.remove('open');
                 }
             });
-        
-            updateUserInterface();
+
+            // Initialisation
+            initAuth();
         });
+
+        // Fonctions globales nécessaires pour les appels HTML
+        window.showAuthModal = function(type = 'login') {
+            document.getElementById('authModal').classList.add('active');
+            toggleAuthForm(type);
+        }
+
+        window.closeAuthModal = function() {
+            document.getElementById('authModal').classList.remove('active');
+        }
+
+        window.toggleAuthForm = function(type) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            loginForm.style.display = type === 'login' ? 'block' : 'none';
+            registerForm.style.display = type === 'register' ? 'block' : 'none';
+        }
+
+        window.handleLogout = function() {
+            auth.logout();
+            window.location.reload();
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 
+                              type === 'error' ? 'exclamation-circle' : 
+                              'user-circle'}"></i>
+                <div class="notification-content">
+                    <p>${message}</p>
+                </div>
+            `;
+
+            document.querySelectorAll('.notification').forEach(n => n.remove());
+            document.body.appendChild(notification);
+            
+            requestAnimationFrame(() => notification.classList.add('show'));
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
     </script>
     <script src="app.js"></script>
+
 </body>
 
 </html>
