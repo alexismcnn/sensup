@@ -1835,3 +1835,19 @@ footer .social-links a:hover {
         display: block;
     }
 }
+
+/* ...existing code... */
+
+@media (max-width: 768px) {
+    /* Masquer la navbar sur la page d'accueil en mobile */
+    body.home .navbar {
+        display: none;
+    }
+
+    /* Ajuster le padding du hero quand la navbar est cachée */
+    body.home .hero {
+        padding-top: 2rem;
+    }
+
+    /* ...rest of existing mobile media query code... */
+}
