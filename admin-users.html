@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Utilisateurs - Admin Sensup</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="admin-users.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Sidebar commune -->
+    <div class="admin-sidebar">
+        <div class="sidebar-header">
+            <h2>Admin Panel</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="admin.html"><i class="fas fa-user-circle"></i> Tableau de Bord</a></li>
+            <li>
+                <a href="admin-users.html" class="active">
+                    <i class="fas fa-users"></i> Utilisateurs
+                    <span id="userCount" class="user-count">0</span>
+                </a>
+            </li>
+            <li><a href="admin-settings.html"><i class="fas fa-cog"></i> Paramètres</a></li>
+            <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+        </ul>
+    </div>
+
+    <div class="admin-content">
+        <div class="admin-container">
+            <h1>Gestion des Utilisateurs</h1>
+
+            <!-- Dashboard des utilisateurs -->
+            <div class="user-stats-grid">
+                <div class="stat-card">
+                    <h3>Total Utilisateurs</h3>
+                    <p id="totalUsers">0</p>
+                    <span class="stat-trend" id="usersTrend">
+                        <i class="fas fa-arrow-up"></i> +0%
+                    </span>
+                </div>
+                <div class="stat-card">
+                    <h3>Nouveaux (7 jours)</h3>
+                    <p id="newUsers">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Actifs aujourd'hui</h3>
+                    <p id="activeUsers">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Dernière inscription</h3>
+                    <p id="lastRegistration">-</p>
+                </div>
+            </div>
+
+            <!-- Graphique d'évolution -->
+            <div class="chart-container">
+                <h2>Évolution des inscriptions</h2>
+                <canvas id="usersChart"></canvas>
+            </div>
+
+            <!-- Filtres et recherche avancée -->
+            <div class="filters-section">
+                <div class="search-bar">
+                    <input type="text" id="userSearch" placeholder="Rechercher un utilisateur...">
+                    <select id="filterStatus">
+                        <option value="all">Tous les statuts</option>
+                        <option value="active">Actifs</option>
+                        <option value="inactive">Inactifs</option>
+                    </select>
+                    <button id="exportUsers" class="export-btn">
+                        <i class="fas fa-download"></i> Exporter CSV
+                    </button>
+                    <button id="exportMonthlyReport" class="export-btn report-btn">
+                        <i class="fas fa-file-alt"></i> Rapport Mensuel
+                    </button>
+                </div>
+            </div>
+
+            <!-- Liste détaillée des utilisateurs -->
+            <div class="users-table-container">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Date d'inscription</th>
+                            <th>Dernière connexion</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersList">
+                        <!-- Les utilisateurs seront injectés ici -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="auth.js"></script>
+    <script src="admin-users.js"></script>
+</body>
+
+</html>

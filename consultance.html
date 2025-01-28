@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultance - Sensup</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="consultance.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="auth.css">
+</head>
+
+<body>
+    <!-- Copier la même navbar que index.html -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="Sensup" class="logo-image">
+            </a>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">Nos activités <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="consultance.html">Consultance</a>
+                        <a href="coaching.html">Coaching</a>
+                        <a href="accompagnement.html">Accompagnement</a>
+                        <a href="maroquinerie.html">Maroquinerie</a>
+                        <a href="horeca.html">Horeca</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">Consultance <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="#consultance-overview">Notre approche</a>
+                        <a href="#methodology">Notre méthodologie</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">À propos <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="equipe.html">Notre équipe</a>
+                        <a href="index.html#about">Qui sommes-nous</a>
+                    </div>
+                </div>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="consultance-hero">
+        <div class="container">
+            <h1>Services de Consultance</h1>
+            <p class="hero-subtitle">Expertise stratégique pour votre réussite</p>
+        </div>
+    </header>
+
+    <section class="consultance-overview" id="consultance-overview">
+        <div class="container">
+            <div class="overview-content">
+                <h2>Notre Approche</h2>
+                <p>Chez Sensup, nous offrons des services de consultance personnalisés pour répondre aux défis uniques
+                    de votre entreprise. Notre équipe d'experts combine expertise stratégique et connaissance
+                    approfondie du marché pour vous guider vers le succès.</p>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Stratégie d'Entreprise</h3>
+                        <p>Développement de plans stratégiques, analyse de marché et positionnement concurrentiel.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>Branding & Marketing</h3>
+                        <p>Création d'identité de marque forte et stratégies marketing innovantes.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-users-cog"></i>
+                        <h3>Gestion RH</h3>
+                        <p>Optimisation des politiques RH et développement organisationnel.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Innovation & Digital</h3>
+                        <p>Transformation digitale et intégration des nouvelles technologies dans votre stratégie.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="methodology" id="methodology">
+        <div class="container">
+            <h2>Notre Méthodologie</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <span class="step-number">01</span>
+                    <h3>Analyse</h3>
+                    <p>Évaluation approfondie de votre situation actuelle et de vos objectifs.</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">02</span>
+                    <h3>Stratégie</h3>
+                    <p>Développement d'un plan d'action personnalisé et mesurable.</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">03</span>
+                    <h3>Implémentation</h3>
+                    <p>Mise en œuvre des solutions avec un accompagnement constant.</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">04</span>
+                    <h3>Suivi</h3>
+                    <p>Évaluation continue des résultats et ajustements si nécessaire.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Copier le même footer que index.html -->
+    <footer>
+        <!-- ...existing footer code from index.html... -->
+    </footer>
+
+    <!-- Auth Modals -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-form">
+            <button class="close-modal" onclick="closeAuthModal()">×</button>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <h2>Bienvenue</h2>
+                <div class="form-group">
+                    <input type="email" id="loginEmail" required placeholder="Votre email">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" required placeholder="Votre mot de passe">
+                </div>
+                <button type="submit">Se connecter</button>
+                <div class="auth-toggle">
+                    <button type="button" onclick="toggleAuthForm('register')">
+                        Pas encore de compte ? S'inscrire
+                    </button>
+                </div>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm">
+                <h2>Créer un compte</h2>
+                <div class="form-group">
+                    <input type="text" id="registerName" required placeholder="Votre nom complet">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="registerEmail" required placeholder="Votre email">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="registerPassword" required placeholder="Choisir un mot de passe">
+                </div>
+                <button type="submit">S'inscrire</button>
+                <div class="auth-toggle">
+                    <button type="button" onclick="toggleAuthForm('login')">
+                        Déjà un compte ? Se connecter
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Login form handler
+            document.getElementById('loginForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+
+                try {
+                    await auth.login(email, password);
+                    showNotification(`Bienvenue ${email} !`, 'welcome');
+                    setTimeout(() => {
+                        closeAuthModal();
+                        location.reload();
+                    }, 1500);
+                } catch (error) {
+                    showNotification('Email ou mot de passe incorrect', 'error');
+                }
+            });
+
+            // Register form handler
+            document.getElementById('registerForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+
+                try {
+                    await auth.register(email, password, name);
+                    showNotification(`Compte créé avec succès ! Bienvenue ${name}`, 'success');
+                    setTimeout(() => {
+                        toggleAuthForm('login');
+                    }, 1500);
+                } catch (error) {
+                    showNotification(error.message || 'Erreur lors de la création du compte', 'error');
+                }
+            });
+        });
+
+        // Auth modal functions
+        function showAuthModal(type = 'login') {
+            const modal = document.getElementById('authModal');
+            modal.classList.add('active');
+            toggleAuthForm(type);
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('authModal');
+            modal.classList.remove('active');
+        }
+
+        function toggleAuthForm(type) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+
+            if (type === 'login') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            }
+        }
+    </script>
+    <script src="app.js"></script>
+</body>
+
+</html>

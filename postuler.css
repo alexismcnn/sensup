@@ -1,0 +1,411 @@
+/* Hero Section */
+.postuler-hero {
+    margin-top: 80px; /* Account for fixed navbar */
+    background: linear-gradient(135deg, #2D3436 0%, #00B894 100%);
+    position: relative;
+    overflow: hidden;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 120px 0 60px;
+}
+
+.postuler-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('images/pattern.svg') repeat;
+    opacity: 0.1;
+    animation: backgroundScroll 20s linear infinite;
+}
+
+.postuler-hero h1 {
+    color: black;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+}
+
+.postuler-hero .hero-subtitle {
+    color: black;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+}
+
+/* Jobs Grid */
+.careers-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+}
+
+.jobs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.job-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+    border-left: 4px solid #00B894;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.job-type {
+    background: rgba(0, 184, 148, 0.1);
+    color: var(--primary);
+    padding: 0.25rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+}
+
+.job-location {
+    color: var(--text);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.job-location i {
+    margin-right: 0.5rem;
+    color: var(--primary);
+}
+
+.job-requirements {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+}
+
+.job-requirements h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.job-requirements ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.job-requirements li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.job-requirements i {
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+/* Application Form */
+.application-section {
+    padding: 6rem 0;
+    background: #f8f9fa;
+}
+
+.application-form {
+    max-width: 800px;
+    margin: 3rem auto 0;
+    padding: 3rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-card);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.file-upload {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px dashed #ddd;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.file-upload:hover {
+    border-color: var(--primary);
+    background: rgba(0, 184, 148, 0.05);
+}
+
+.file-upload input {
+    display: none;
+}
+
+.file-upload i {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.file-name {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.contact-cta {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 3rem;
+    text-align: center;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 184, 148, 0.1);
+    border: 1px solid rgba(0, 184, 148, 0.1);
+}
+
+.requirements-note {
+    color: var(--text);
+    font-size: 0.9rem;
+    margin: 1rem 0 2rem;
+    font-style: italic;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.2rem 3.5rem;
+    background: linear-gradient(135deg, #00B894 0%, #38d9a9 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 184, 148, 0.3);
+    background: linear-gradient(135deg, #38d9a9 0%, #00B894 100%);
+}
+
+.cta-button i {
+    font-size: 1.3rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+/* Simple Navbar */
+.simple-navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 0.5rem 0;
+}
+
+.simple-navbar .logo {
+    display: block;
+    height: 80px; /* Même hauteur que les autres pages */
+    transition: transform 0.3s ease;
+}
+
+.simple-navbar .logo:hover {
+    transform: scale(1.05);
+}
+
+.simple-navbar .logo-image {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Updated Contact Button */
+.contact-btn {
+    background: linear-gradient(135deg, #00B894 0%, #38d9a9 100%);
+    color: white;
+    font-weight: 600;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.contact-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 184, 148, 0.3);
+}
+
+.contact-btn i {
+    font-size: 1.2rem;
+}
+
+.contact-info-box {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(0, 184, 148, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 184, 148, 0.1);
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.contact-method:last-child {
+    margin-bottom: 0;
+}
+
+.contact-method:hover {
+    background: rgba(0, 184, 148, 0.1);
+    border-radius: 8px;
+}
+
+.contact-method i {
+    color: #00B894;
+    font-size: 1.2rem;
+}
+
+.contact-method p {
+    margin: 0;
+    color: #2D3436;
+    font-size: 1rem;
+}
+
+.contact-btn.animated {
+    background: linear-gradient(135deg, #00B894 0%, #38d9a9 100%);
+    color: white;
+    padding: 1.2rem 3rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: none;
+    margin-top: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-btn.animated::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: 0.5s;
+}
+
+.contact-btn.animated:hover::before {
+    left: 100%;
+}
+
+.contact-btn.animated:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 184, 148, 0.3);
+}
+
+.contact-btn.animated i {
+    animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .application-form {
+        padding: 1.5rem;
+    }
+}

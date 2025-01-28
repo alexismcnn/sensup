@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coaching - Boosturb</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="coaching.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="auth.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="Boosturb" class="logo-image">
+            </a>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">Nos activités <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="consultance.html">Consultance</a>
+                        <a href="coaching.html">Coaching</a>
+                        <a href="accompagnement.html">Accompagnement</a>
+                        <a href="maroquinerie.html">Maroquinerie</a>
+                        <a href="horeca.html">Horeca</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">Coaching <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="#coaching-overview">Notre approche du coaching</a>
+                        <a href="#methodology">Notre processus</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">À propos <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="equipe.html">Notre équipe</a>
+                        <a href="index.html#about">Qui sommes-nous</a>
+                    </div>
+                </div>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="coaching-hero">
+        <div class="container">
+            <h1>Services de Coaching</h1>
+            <p class="hero-subtitle">Développez votre potentiel professionnel</p>
+        </div>
+    </header>
+
+    <section class="coaching-overview" id="coaching-overview">
+        <div class="container">
+            <div class="overview-content">
+                <h2>Notre Approche du Coaching</h2>
+                <p>Notre approche personnalisée du coaching vous aide à atteindre vos objectifs professionnels et
+                    personnels. Nous nous concentrons sur le développement de vos compétences et la réalisation de votre
+                    potentiel.</p>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>Coaching Individuel</h3>
+                        <p>Accompagnement personnalisé pour votre développement professionnel et leadership.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Coaching d'Équipe</h3>
+                        <p>Optimisation de la performance collective et de la cohésion d'équipe.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-crown"></i>
+                        <h3>Coaching Exécutif</h3>
+                        <p>Accompagnement des dirigeants dans leurs défis stratégiques et managériaux.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Coaching de Performance</h3>
+                        <p>Maximisation de vos résultats et de votre efficacité professionnelle.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="methodology" id="methodology">
+        <div class="container">
+            <h2>Notre Processus</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <span class="step-number">01</span>
+                    <h3>Découverte</h3>
+                    <p>Identification de vos objectifs et des axes de développement.</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">02</span>
+                    <h3>Plan d'Action</h3>
+                    <p>Élaboration d'un programme de coaching sur mesure.</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">03</span>
+                    <h3>Accompagnement</h3>
+                    <p>Sessions régulières et suivi personnalisé.</p>
+                </div>
+                <div class="step-item">
+                    <span class="step-number">04</span>
+                    <h3>Résultats</h3>
+                    <p>Évaluation des progrès et ancrage des acquis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <!-- ...footer content... -->
+    </footer>
+
+    <!-- Add Auth Modal -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-form">
+            <button class="close-modal" onclick="closeAuthModal()">×</button>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <h2>Bienvenue</h2>
+                <div class="form-group">
+                    <input type="email" id="loginEmail" required placeholder="Votre email">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" required placeholder="Votre mot de passe">
+                </div>
+                <button type="submit">Se connecter</button>
+                <div class="auth-toggle">
+                    <button type="button" onclick="toggleAuthForm('register')">
+                        Pas encore de compte ? S'inscrire
+                    </button>
+                </div>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm">
+                <h2>Créer un compte</h2>
+                <div class="form-group">
+                    <input type="text" id="registerName" required placeholder="Votre nom complet">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="registerEmail" required placeholder="Votre email">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="registerPassword" required placeholder="Choisir un mot de passe">
+                </div>
+                <button type="submit">S'inscrire</button>
+                <div class="auth-toggle">
+                    <button type="button" onclick="toggleAuthForm('login')">
+                        Déjà un compte ? Se connecter
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add authentication scripts -->
+    <script src="auth.js"></script>
+    <script>
+        // Add auth event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Login form handler
+            document.getElementById('loginForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+
+                try {
+                    await auth.login(email, password);
+                    showNotification(`Bienvenue ${email} !`, 'welcome');
+                    setTimeout(() => {
+                        closeAuthModal();
+                        location.reload();
+                    }, 1500);
+                } catch (error) {
+                    showNotification('Email ou mot de passe incorrect', 'error');
+                }
+            });
+
+            // Register form handler
+            document.getElementById('registerForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+
+                try {
+                    await auth.register(email, password, name);
+                    showNotification(`Compte créé avec succès ! Bienvenue ${name}`, 'success');
+                    setTimeout(() => {
+                        toggleAuthForm('login');
+                    }, 1500);
+                } catch (error) {
+                    showNotification(error.message || 'Erreur lors de la création du compte', 'error');
+                }
+            });
+        });
+
+        // Auth modal functions
+        function showAuthModal(type = 'login') {
+            const modal = document.getElementById('authModal');
+            modal.classList.add('active');
+            toggleAuthForm(type);
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('authModal');
+            modal.classList.remove('active');
+        }
+
+        function toggleAuthForm(type) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+
+            if (type === 'login') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            }
+        }
+    </script>
+    <script src="app.js"></script>
+</body>
+
+</html>

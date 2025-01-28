@@ -1,0 +1,259 @@
+.solutions-hero {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    padding: 160px 0 80px;
+    color: var(--white);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.solutions-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: 1rem;
+}
+
+.solutions-hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.solutions-hero .hero-subtitle {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    opacity: 0.9;
+    margin: 1rem auto 0;
+    max-width: 600px;
+    animation: fadeInUp 0.8s var(--animation-smooth) 0.3s forwards;
+}
+
+.solutions-grid {
+    padding: 6rem 0;
+    background: var(--light);
+}
+
+.solutions-grid .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.solution-card {
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: all 0.3s var(--animation-bounce);
+    position: relative;
+    overflow: hidden;
+}
+
+.solution-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent);
+    transition: transform 0.3s ease;
+    transform: scaleY(0);
+}
+
+.solution-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.solution-card:hover::before {
+    transform: scaleY(1);
+}
+
+.solution-icon {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+}
+
+.solution-card h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.solution-card p {
+    color: var(--text);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.solution-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: gap 0.3s ease;
+}
+
+.solution-link:hover {
+    gap: 1rem;
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+    padding: 6rem 0;
+    background: var(--white);
+}
+
+.why-choose-us h2 {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 4rem;
+    color: var(--primary);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+}
+
+.benefit-item {
+    text-align: center;
+}
+
+.benefit-item i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+}
+
+.benefit-item h4 {
+    color: var(--primary);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: var(--white);
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-section .cta-button {
+    background: var(--white);
+    color: var(--accent);
+    padding: 1rem 3rem;
+}
+
+.cta-section .cta-button:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-5px);
+}
+
+/* Mobile Navigation */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 0.5rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .solutions-hero {
+        padding: 120px 0 60px;
+    }
+
+    .solutions-hero h1 {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+
+    .solutions-hero .hero-subtitle {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+
+    .solutions-grid .container {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+
+    .solution-card {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .benefit-item {
+        padding: 1.5rem;
+    }
+
+    .cta-section {
+        padding: 4rem 1rem;
+    }
+
+    .cta-section .cta-button {
+        width: 100%;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .why-choose-us {
+        padding: 4rem 0;
+    }
+
+    .why-choose-us h2 {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .solutions-hero h1 {
+        font-size: clamp(1.8rem, 5vw, 2.5rem);
+    }
+
+    .solution-icon {
+        font-size: 2rem;
+    }
+
+    .solution-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .solutions-grid {
+        padding: 3rem 0;
+    }
+}

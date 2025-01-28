@@ -1,0 +1,198 @@
+.accompagnement-hero {
+    padding: 8rem 0 4rem;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: var(--white);
+    text-align: center;
+}
+
+.accompagnement-hero h1 {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    margin-bottom: 1rem;
+    animation: fadeInUp 0.8s var(--animation-smooth) forwards;
+}
+
+/* ...rest of styles matching consultance.css structure... */
+
+/* Navigation adjustments specific to accompagnement page */
+.navbar .container {
+    width: min(1400px, 100% - 2rem);
+    /* Increased from 1200px */
+    margin: 0 auto;
+}
+
+.nav-links {
+    gap: 3rem;
+    /* Increased from 2rem */
+}
+
+/* Override dropdown menu position to prevent overflow */
+.dropdown-menu {
+    min-width: 220px;
+    /* Ajusté pour le contenu plus long */
+}
+
+.step-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Notre Approche Section Redesign */
+.accompagnement-overview {
+    padding: 8rem 0;
+    background: var(--white);
+}
+
+.overview-content {
+    max-width: 1000px;
+    /* Increased from 800px */
+    margin: 0 auto;
+}
+
+.overview-content h2 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    color: var(--primary);
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+}
+
+.overview-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+.overview-content>p {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 5rem;
+    text-align: center;
+    line-height: 1.8;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Services Grid Redesign */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.service-card {
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    background: var(--light);
+    transition: all 0.4s var(--animation-bounce);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover::before {
+    transform: scaleY(1);
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+}
+
+/* Methodology Section Redesign */
+.methodology {
+    padding: 8rem 0;
+    background: linear-gradient(135deg, var(--light) 60%, var(--white) 40%);
+}
+
+.methodology h2 {
+    text-align: center;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    color: var(--primary);
+    margin-bottom: 5rem;
+    position: relative;
+}
+
+.methodology h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+}
+
+.step-item {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: all 0.4s var(--animation-bounce);
+    position: relative;
+}
+
+.step-number {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--accent);
+    opacity: 0.15;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+}
+
+.step-item h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.step-item p {
+    color: var(--text);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+/* Hover effects */
+.step-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ...rest of existing code... */

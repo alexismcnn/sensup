@@ -1,0 +1,509 @@
+/* Hero Section */
+.team-hero {
+    padding: 8rem 0 4rem;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: var(--white);
+    position: relative;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+}
+
+.team-hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.team-hero h1 {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    animation: slideInLeft 0.8s var(--animation-smooth) forwards;
+}
+
+.team-hero .hero-subtitle {
+    color: var(--white);
+    opacity: 0;
+    animation: fadeInUp 0.8s var(--animation-smooth) 0.3s forwards;
+}
+
+.team-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(0, 184, 148, 0.1) 0%, rgba(45, 52, 54, 0.1) 100%);
+}
+
+/* Team Overview */
+.team-overview {
+    background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+    padding: 6rem 0;
+}
+
+.team-intro {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+}
+
+.team-category {
+    margin-bottom: 4rem;
+}
+
+.team-category h3 {
+    color: #00B894;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.team-category h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, #00B894, #2ecc71);
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.team-member {
+    border-left: 4px solid #00B894;
+    background: linear-gradient(to right, rgba(0, 184, 148, 0.05) 0%, white 100%);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+}
+
+.member-image {
+    height: 300px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.member-image::after {
+    content: 'Voir détails';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 184, 148, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.member-image:hover::after {
+    opacity: 1;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover .member-image img {
+    transform: scale(1.1);
+}
+
+.member-info {
+    padding: 2rem;
+}
+
+.member-info h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.member-info .role {
+    color: #00B894;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.member-info .bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: var(--text);
+    transition: var(--transition-smooth);
+}
+
+.social-links a:hover {
+    color: #00B894;
+}
+
+.social-links .linkedin {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #0077b5;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links .linkedin:hover {
+    background: #005d8f;
+    transform: translateY(-2px);
+}
+
+.social-links .linkedin i {
+    font-size: 1.2rem;
+}
+
+/* Values Section */
+.team-values {
+    background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+    padding: 6rem 0;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.value-card {
+    background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+    border-top: 4px solid #00B894;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: var(--transition-smooth);
+}
+
+.value-card:hover {
+    background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-card);
+}
+
+.value-card i {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #00B894 0%, #2ecc71 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+}
+
+/* Join Team Section Updated */
+.join-team {
+    background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+    text-align: center;
+    padding: 6rem 0;
+}
+
+.join-team .container {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    max-width: 800px;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 184, 148, 0.15);
+    border: 1px solid rgba(0, 184, 148, 0.1);
+    position: relative;
+    overflow: hidden;
+    animation: floatBox 3s ease-in-out infinite;
+}
+
+.join-team .container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #00B894, #2ecc71);
+}
+
+.join-team h2 {
+    color: #2D3436;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.join-team h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(to right, #00B894, #2ecc71);
+    border-radius: 2px;
+}
+
+.join-team p {
+    color: #4a5568;
+    font-size: 1.2rem;
+    margin: 2rem 0;
+    line-height: 1.6;
+}
+
+.join-team .cta-button {
+    background: linear-gradient(135deg, #00B894 0%, #2ecc71 100%);
+    color: white;
+    padding: 1.2rem 3.5rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.join-team .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.join-team .cta-button:hover::before {
+    left: 100%;
+}
+
+.join-team .cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 184, 148, 0.3);
+}
+
+@keyframes floatBox {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Profile Popup Updated */
+.profile-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 3.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 25px 50px rgba(0, 184, 148, 0.25);
+    z-index: 9999;
+    min-width: 320px;
+    max-width: 500px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 1px solid rgba(0, 184, 148, 0.1);
+}
+
+.profile-popup.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.profile-popup::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #00B894, #2ecc71);
+    border-radius: 4px 4px 0 0;
+}
+
+.popup-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 184, 148, 0.1);
+    border: none;
+    font-size: 1.5rem;
+    color: #00B894;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.popup-close:hover {
+    background: #00B894;
+    color: white;
+    transform: rotate(90deg);
+}
+
+.profile-popup h3 {
+    font-size: 2rem;
+    color: #2D3436;
+    margin-bottom: 0.5rem;
+    padding-right: 2rem;
+    background: linear-gradient(to right, #2D3436, #00B894);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.profile-popup .role {
+    color: #00B894;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.4s ease forwards 0.2s;
+}
+
+.profile-popup .bio {
+    color: #4a5568;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.4s ease forwards 0.3s;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(45, 52, 54, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(3px);
+    z-index: 1000;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .team-hero {
+        min-height: 30vh;
+        padding: 80px 0 40px;
+    }
+
+    .member-image {
+        height: 250px;
+    }
+
+    .value-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Click Info */
+.click-info {
+    margin-top: 1rem;
+    color: #00B894;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.click-info i {
+    animation: pointUp 1.5s ease-in-out infinite;
+}
+
+@keyframes pointUp {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}

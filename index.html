@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensup</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="auth.css">
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="images/logo.svg" alt="Sensup" class="logo-image">
+            </a>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">Nos activités <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="consultance.html">Consultance</a>
+                        <a href="coaching.html">Coaching</a>
+                        <a href="accompagnement.html">Accompagnement</a> <!-- Updated link -->
+                        <a href="maroquinerie.html">Maroquinerie</a>
+                        <a href="horeca.html">Horeca</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">À propos <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="equipe.html">Notre équipe</a>
+                        <a href="#about">Qui sommes-nous</a>
+                    </div>
+                </div>
+                <a href="#contact">Contact</a>
+                <button class="auth-btn" onclick="showAuthModal('login')">Connexion</button>
+                <div class="user-menu">
+                    <button class="user-trigger">
+                        <i class="fas fa-user-circle"></i>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="user-dropdown">
+                        <div class="user-info">
+                            <div class="user-name"></div>
+                            <div class="user-email"></div>
+                        </div>
+                        <button class="logout-btn" onclick="handleLogout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Déconnexion
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Propulsez votre<br>entreprise</h1>
+            <p class="hero-subtitle">Stratégie · Innovation · Croissance</p>
+            <a href="nos-solutions.html" class="cta-button">Découvrir nos solutions</a>
+        </div>
+    </header>
+
+    <section class="activities">
+        <div class="container">
+            <h2>Nos Activités</h2>
+            <div class="activities-content">
+                <p class="activities-intro">
+                    La société a pour objet, tant en Belgique qu'à l'étranger, pour compte propre ou compte de tiers ou
+                    en participation avec ceux-ci :
+                </p>
+                <ul class="activities-list">
+                    <li>
+                        <i class="fas fa-chart-line"></i>
+                        Consultance en stratégie d'entreprise, en branding, stratégie marketing, politiques RH, etc.
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i>
+                        Coaching individuel et coaching collectif
+                    </li>
+                    <li>
+                        <i class="fas fa-briefcase"></i>
+                        Coaching professionnel, coaching en entreprise, coaching de dirigeants
+                    </li>
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        Training et formation en leadership, management et relations
+                    </li>
+                    <li>
+                        <i class="fas fa-rocket"></i>
+                        Accompagnement à la création d'entreprise
+                    </li>
+                    <li>
+                        <i class="fas fa-tshirt"></i>
+                        Création d'accessoires de maroquinerie et de prêt à porter
+                    </li>
+                    <li>
+                        <i class="fas fa-coffee"></i>
+                        Horeca – Cafétéria, salle de réunion, espace coworking, etc
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-content" data-aos="fade-right">
+                    <span class="about-subtitle">À PROPOS DE NOUS</span>
+                    <h2 class="about-title">Votre partenaire dans la réussite entrepreneuriale</h2>
+                    <p class="about-text">
+                        Depuis plus de 10 ans, Sensup accompagne les entrepreneurs et les entreprises dans leur
+                        développement. Notre approche unique combine expertise stratégique, innovation et accompagnement
+                        personnalisé pour garantir votre succès.
+                    </p>
+                    <p class="about-text">
+                        Nous croyons en la force de la collaboration et de l'innovation pour transformer les défis en
+                        opportunités de croissance. Notre équipe d'experts passionnés s'engage à vos côtés pour
+                        atteindre vos objectifs.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <p>Taux de satisfaction</p>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <p>Projets réalisés</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image-grid" data-aos="fade-left">
+                    <div class="about-image-item">
+                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80"
+                            alt="Réunion stratégique" loading="lazy">
+                    </div>
+                    <div class="about-image-item">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80"
+                            alt="Travail d'équipe" loading="lazy">
+                    </div>
+                    <div class="about-image-item">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80"
+                            alt="Innovation" loading="lazy">
+                    </div>
+                    <div class="about-image-item">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80"
+                            alt="Analyse données" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Nos Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Stratégie de croissance</h3>
+                    <p>Développez votre activité avec une stratégie claire et efficace</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Optimisation</h3>
+                    <p>Maximisez votre efficacité opérationnelle</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Formation</h3>
+                    <p>Développez les compétences de vos équipes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-header">
+                <h2>Nous Contacter</h2>
+                <p class="contact-subtitle">Une question ? Un projet ? N'hésitez pas à nous contacter !</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <p>Prenez rendez-vous pour une consultation gratuite</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+33 1 23 45 67 89</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contact@sensup.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-cta">
+                    <a href="mailto:alexis.mancinisensity@gmail.com" class="contact-btn">
+                        <i class="fas fa-envelope"></i>
+                        Nous contacter par email
+                    </a>
+                    <p class="contact-note">Cliquez pour ouvrir votre client mail</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modals -->
+    <div class="auth-modal" id="authModal">
+        <div class="auth-form">
+            <button class="close-modal" onclick="closeAuthModal()">×</button>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <h2>Bienvenue</h2>
+                <div class="form-group">
+                    <input type="email" id="loginEmail" required placeholder="Votre email">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" required placeholder="Votre mot de passe">
+                </div>
+                <button type="submit">Se connecter</button>
+                <div class="auth-toggle">
+                    <button type="button" onclick="toggleAuthForm('register')">
+                        Pas encore de compte ? S'inscrire
+                    </button>
+                </div>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm">
+                <h2>Créer un compte</h2>
+                <div class="form-group">
+                    <input type="text" id="registerName" required placeholder="Votre nom complet">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="registerEmail" required placeholder="Votre email">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="registerPassword" required placeholder="Choisir un mot de passe">
+                </div>
+                <button type="submit">S'inscrire</button>
+                <div class="auth-toggle">
+                    <button type="button" onclick="toggleAuthForm('login')">
+                        Déjà un compte ? Se connecter
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <section class="partners">
+        <div class="container">
+            <h2 class="partners-title" data-aos="fade-up">Ils nous font confiance</h2>
+            <div class="partners-grid">
+                <div class="partner-item" data-aos="fade-up">
+                    <img src="https://www.interparking-france.com/wp-content/uploads/2019/11/professionnalisme.png"
+                        alt="Google">
+                </div>
+                <div class="partner-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/f/f7/Logo_TotalEnergies.svg/2560px-Logo_TotalEnergies.svg.png"
+                        alt="Netflix">
+                </div>
+                <div class="partner-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Be_Brussels_logo_%28full%29.svg"
+                        alt="Amazon">
+                </div>
+                <div class="partner-item" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Tui_logo.png"
+                        alt="Microsoft">
+                </div>
+                <div class="partner-item" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://ecologroen.brussels/wp-content/themes/ecololocales2024/dist/images/logo-groen.svg"
+                        alt="Meta">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Sensup</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Important: Changer l'ordre des scripts -->
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Gestionnaire de formulaire de connexion
+            document.getElementById('loginForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+
+                // Vérification des identifiants admin
+                if (email === '123' && password === '123') {
+                    showNotification('Connexion réussie! Redirection...', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'admin.html';
+                    }, 1500);
+                    return;
+                }
+
+                try {
+                    await auth.login(email, password);
+                    showNotification(`Bienvenue ${email} !`, 'welcome');
+                    setTimeout(() => {
+                        closeAuthModal();
+                        location.reload();
+                    }, 1500);
+                } catch (error) {
+                    showNotification('Email ou mot de passe incorrect', 'error');
+                }
+            });
+
+            // Gestionnaire de formulaire d'inscription avec debug
+            document.getElementById('registerForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('registerName').value;
+                const email = document.getElementById('registerEmail').value;
+                const password = document.getElementById('registerPassword').value;
+
+                console.log('Registration attempt:', { name, email });
+
+                try {
+                    await auth.register(email, password, name);
+                    console.log('Registration successful');
+                    showNotification(`Compte créé avec succès ! Bienvenue ${name}`, 'success');
+                    auth.debug(); // Log de l'état après inscription
+                    setTimeout(() => {
+                        toggleAuthForm('login');
+                    }, 1500);
+                } catch (error) {
+                    console.error('Registration error:', error);
+                    showNotification(error.message || 'Erreur lors de la création du compte', 'error');
+                }
+            });
+
+            // Fonction de notification améliorée
+            function showNotification(message, type = 'success') {
+                const notificationId = Date.now();
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.id = `notif-${notificationId}`;
+
+                const icon = type === 'success' ? 'check-circle' :
+                    type === 'error' ? 'exclamation-circle' :
+                        'user-circle';
+
+                notification.innerHTML = `
+                    <i class="fas fa-${icon}"></i>
+                    <div class="notification-content">
+                        <p>${message}</p>
+                    </div>
+                `;
+
+                // Supprimer les anciennes notifications
+                document.querySelectorAll('.notification').forEach(n => n.remove());
+
+                document.body.appendChild(notification);
+                requestAnimationFrame(() => {
+                    notification.classList.add('show');
+                });
+
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 500);
+                }, 3000);
+            }
+        });
+
+        // Fonctions de gestion de la modale
+        function showAuthModal(type = 'login') {
+            const modal = document.getElementById('authModal');
+            modal.classList.add('active');
+            toggleAuthForm(type);
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('authModal');
+            modal.classList.remove('active');
+        }
+
+        function toggleAuthForm(type) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+
+            if (type === 'login') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            }
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', () => {
+            const authBtn = document.querySelector('.auth-btn');
+            if (authBtn && auth.isLoggedIn()) {
+                authBtn.textContent = 'Déconnexion';
+                authBtn.onclick = () => {
+                    auth.logout();
+                    showNotification('Déconnexion réussie', 'success');
+                    authBtn.textContent = 'Connexion';
+                    authBtn.onclick = () => showAuthModal('login');
+                };
+            }
+        });
+
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+
+        dropdowns.forEach(dropdown => {
+            const trigger = dropdown.querySelector('.dropdown-trigger');
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const authBtn = document.querySelector('.auth-btn');
+            const userMenu = document.querySelector('.user-menu');
+            const userTrigger = document.querySelector('.user-trigger');
+            
+            function updateUserInterface() {
+                const authBtn = document.querySelector('.auth-btn');
+                const userMenu = document.querySelector('.user-menu');
+                
+                if (auth.isLoggedIn()) {
+                    authBtn.style.display = 'none';
+                    userMenu.style.display = 'block';
+                    const user = auth.getCurrentUser();
+                    userMenu.querySelector('.user-name').textContent = user.name;
+                    userMenu.querySelector('.user-email').textContent = user.email;
+                } else {
+                    authBtn.style.display = 'block';
+                    userMenu.style.display = 'none';
+                    // Réinitialiser le onclick du bouton de connexion
+                    authBtn.onclick = () => showAuthModal('login');
+                }
+            }
+        
+            userTrigger?.addEventListener('click', () => {
+                userMenu.classList.toggle('open');
+            });
+        
+            window.handleLogout = () => {
+                auth.logout();
+                window.location.reload(); // Recharge la page après déconnexion
+            };
+        
+            // Fermer le menu quand on clique ailleurs
+            document.addEventListener('click', (e) => {
+                if (!userMenu?.contains(e.target)) {
+                    userMenu?.classList.remove('open');
+                }
+            });
+        
+            updateUserInterface();
+        });
+    </script>
+    <script src="app.js"></script>
+</body>
+
+</html>

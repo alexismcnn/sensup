@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Solutions - Sensup</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="solutions.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.svg" alt="Sensup" class="logo-image">
+            </a>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">Nos activités <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="consultance.html">Consultance</a>
+                        <a href="coaching.html">Coaching</a>
+                        <a href="accompagnement.html">Accompagnement</a>
+                        <a href="maroquinerie.html">Maroquinerie</a>
+                        <a href="horeca.html">Horeca</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">À propos <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="equipe.html">Notre équipe</a>
+                        <a href="index.html#about">Qui sommes-nous</a>
+                    </div>
+                </div>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="solutions-hero">
+        <div class="container">
+            <h1>Nos Solutions</h1>
+            <p class="hero-subtitle">Des solutions adaptées à vos besoins</p>
+        </div>
+    </header>
+
+    <section class="solutions-grid">
+        <div class="container">
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Consultance</h3>
+                <p>Stratégie d'entreprise, branding, marketing, politiques RH. Une expertise complète pour votre développement.</p>
+                <a href="consultance.html" class="solution-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Coaching</h3>
+                <p>Coaching individuel et collectif pour développer le potentiel de vos équipes et de vos leaders.</p>
+                <a href="coaching.html" class="solution-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Accompagnement</h3>
+                <p>Support personnalisé pour la création et le développement de votre entreprise.</p>
+                <a href="accompagnement.html" class="solution-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Maroquinerie</h3>
+                <p>Création d'accessoires de maroquinerie et de prêt à porter de qualité.</p>
+                <a href="maroquinerie.html" class="solution-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="fas fa-coffee"></i>
+                </div>
+                <h3>Horeca</h3>
+                <p>Cafétéria, salle de réunion et espace coworking pour vos besoins professionnels.</p>
+                <a href="horeca.html" class="solution-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-choose-us">
+        <div class="container">
+            <h2>Pourquoi Choisir Sensup ?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="fas fa-check-circle"></i>
+                    <h4>Expertise Reconnue</h4>
+                    <p>Plus de 10 ans d'expérience dans l'accompagnement d'entreprises</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-handshake"></i>
+                    <h4>Approche Personnalisée</h4>
+                    <p>Des solutions sur mesure adaptées à vos besoins spécifiques</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="fas fa-clock"></i>
+                    <h4>Accompagnement Continu</h4>
+                    <p>Un suivi régulier pour garantir votre réussite</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Prêt à Démarrer ?</h2>
+            <p>Contactez-nous pour discuter de vos besoins et objectifs</p>
+            <a href="index.html#contact" class="cta-button">Nous Contacter</a>
+        </div>
+    </section>
+
+    <footer>
+        <!-- ...existing footer code... -->
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+
+        dropdowns.forEach(dropdown => {
+            const trigger = dropdown.querySelector('.dropdown-trigger');
+            trigger.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
