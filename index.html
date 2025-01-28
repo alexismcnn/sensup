@@ -16,6 +16,11 @@
 </head>
 
 <body>
+    <div class="mobile-warning">
+        <button class="close-warning">&times;</button>
+        <p>Ce site est optimisé pour une consultation sur ordinateur. Pour une meilleure expérience, nous vous recommandons d'utiliser un écran plus large.</p>
+    </div>
+
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">
@@ -302,273 +307,289 @@
     <!-- Remplacer toute la section des scripts par ceci -->
     <script src="auth.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Variables globales
-            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            const dropdowns = document.querySelectorAll('.dropdown');
-            const authBtn = document.querySelector('.auth-btn');
-            const userMenu = document.querySelector('.user-menu');
-            const userTrigger = document.querySelector('.user-trigger');
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileWarning = document.querySelector('.mobile-warning');
+        const closeWarning = document.querySelector('.close-warning');
 
-            // Gestion du menu mobile
-            function handleMobileMenu() {
-                let touchStartY = 0;
-                let touchEndY = 0;
+        if (closeWarning) {
+            closeWarning.addEventListener('click', () => {
+                mobileWarning.style.display = 'none';
+                // Sauvegarder la préférence
+                localStorage.setItem('warningClosed', 'true');
+            });
+        }
 
-                mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        // Vérifier si l'avertissement a déjà été fermé
+        if (localStorage.getItem('warningClosed') === 'true') {
+            mobileWarning.style.display = 'none';
+        }
 
-                // Gestion du swipe pour fermer le menu
-                navLinks.addEventListener('touchstart', (e) => {
-                    touchStartY = e.touches[0].clientY;
-                });
+        // Variables globales
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const dropdowns = document.querySelectorAll('.dropdown');
+        const authBtn = document.querySelector('.auth-btn');
+        const userMenu = document.querySelector('.user-menu');
+        const userTrigger = document.querySelector('.user-trigger');
 
-                navLinks.addEventListener('touchend', (e) => {
-                    touchEndY = e.changedTouches[0].clientY;
-                    if (touchStartY - touchEndY > 50) { // Swipe vers le haut
-                        closeMobileMenu();
-                    }
-                });
+        // Gestion du menu mobile
+        function handleMobileMenu() {
+            let touchStartY = 0;
+            let touchEndY = 0;
 
-                // Fermer le menu lors du scroll
-                let lastScrollTop = 0;
-                window.addEventListener('scroll', () => {
-                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                    if (scrollTop > lastScrollTop && navLinks.classList.contains('active')) {
-                        closeMobileMenu();
-                    }
-                    lastScrollTop = scrollTop;
-                });
+            mobileMenuToggle.addEventListener('click', toggleMobileMenu);
 
-                // Double-tap prevention
-                document.addEventListener('touchend', (e) => {
+            // Gestion du swipe pour fermer le menu
+            navLinks.addEventListener('touchstart', (e) => {
+                touchStartY = e.touches[0].clientY;
+            });
+
+            navLinks.addEventListener('touchend', (e) => {
+                touchEndY = e.changedTouches[0].clientY;
+                if (touchStartY - touchEndY > 50) { // Swipe vers le haut
+                    closeMobileMenu();
+                }
+            });
+
+            // Fermer le menu lors du scroll
+            let lastScrollTop = 0;
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && navLinks.classList.contains('active')) {
+                    closeMobileMenu();
+                }
+                lastScrollTop = scrollTop;
+            });
+
+            // Double-tap prevention
+            document.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                const link = e.target.closest('a');
+                if (link) {
                     e.preventDefault();
-                    const link = e.target.closest('a');
-                    if (link) {
-                        e.preventDefault();
-                        link.click();
-                    }
-                }, { passive: false });
-            }
-
-            function toggleMobileMenu() {
-                const isOpen = navLinks.classList.contains('active');
-                mobileMenuToggle.classList.toggle('active');
-                navLinks.classList.toggle('active');
-                
-                if (!isOpen) {
-                    // Empêcher le défilement du body quand le menu est ouvert
-                    document.body.style.overflow = 'hidden';
-                    // Animation d'entrée
-                    navLinks.style.transform = 'translateX(0)';
-                } else {
-                    // Réactiver le défilement
-                    document.body.style.overflow = '';
-                    // Animation de sortie
-                    navLinks.style.transform = 'translateX(100%)';
+                    link.click();
                 }
-            }
+            }, { passive: false });
+        }
 
-            function closeMobileMenu() {
-                navLinks.classList.remove('active');
-                mobileMenuToggle.classList.remove('active');
-                document.body.style.overflow = '';
-                navLinks.style.transform = 'translateX(100%)';
-                
-                // Fermer tous les dropdowns ouverts
-                dropdowns.forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            }
-
-            // Amélioration des dropdowns sur mobile
-            function initMobileDropdowns() {
-                dropdowns.forEach(dropdown => {
-                    const trigger = dropdown.querySelector('.dropdown-trigger');
-                    const menu = dropdown.querySelector('.dropdown-menu');
-
-                    trigger.addEventListener('click', (e) => {
-                        if (window.innerWidth <= 768) {
-                            e.preventDefault();
-                            e.stopPropagation();
-
-                            // Fermer les autres dropdowns
-                            dropdowns.forEach(other => {
-                                if (other !== dropdown && other.classList.contains('active')) {
-                                    other.classList.remove('active');
-                                    other.querySelector('.dropdown-menu').style.maxHeight = '0px';
-                                }
-                            });
-
-                            // Toggle du dropdown actuel
-                            dropdown.classList.toggle('active');
-                            if (dropdown.classList.contains('active')) {
-                                menu.style.maxHeight = menu.scrollHeight + 'px';
-                            } else {
-                                menu.style.maxHeight = '0px';
-                            }
-                        }
-                    });
-                });
-            }
-
-            // Gestion des liens d'ancrage sur mobile
-            function initMobileAnchors() {
-                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                    anchor.addEventListener('click', (e) => {
-                        if (window.innerWidth <= 768) {
-                            e.preventDefault();
-                            closeMobileMenu();
-                            
-                            const targetId = anchor.getAttribute('href');
-                            const targetElement = document.querySelector(targetId);
-                            
-                            if (targetElement) {
-                                setTimeout(() => {
-                                    targetElement.scrollIntoView({
-                                        behavior: 'smooth',
-                                        block: 'start'
-                                    });
-                                }, 300);
-                            }
-                        }
-                    });
-                });
-            }
-
-            // Initialisation mobile
-            handleMobileMenu();
-            initMobileDropdowns();
-            initMobileAnchors();
+        function toggleMobileMenu() {
+            const isOpen = navLinks.classList.contains('active');
+            mobileMenuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
             
-            // Gestion de l'orientation
-            window.addEventListener('orientationchange', () => {
-                closeMobileMenu();
-                setTimeout(() => {
-                    window.scrollTo(0, window.pageYOffset);
-                }, 300);
+            if (!isOpen) {
+                // Empêcher le défilement du body quand le menu est ouvert
+                document.body.style.overflow = 'hidden';
+                // Animation d'entrée
+                navLinks.style.transform = 'translateX(0)';
+            } else {
+                // Réactiver le défilement
+                document.body.style.overflow = '';
+                // Animation de sortie
+                navLinks.style.transform = 'translateX(100%)';
+            }
+        }
+
+        function closeMobileMenu() {
+            navLinks.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            document.body.style.overflow = '';
+            navLinks.style.transform = 'translateX(100%)';
+            
+            // Fermer tous les dropdowns ouverts
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('active');
             });
+        }
 
-            // Gestion de l'authentification
-            function initAuth() {
-                document.getElementById('loginForm').addEventListener('submit', handleLogin);
-                document.getElementById('registerForm').addEventListener('submit', handleRegister);
-                updateUserInterface();
-            }
+        // Amélioration des dropdowns sur mobile
+        function initMobileDropdowns() {
+            dropdowns.forEach(dropdown => {
+                const trigger = dropdown.querySelector('.dropdown-trigger');
+                const menu = dropdown.querySelector('.dropdown-menu');
 
-            async function handleLogin(e) {
-                e.preventDefault();
-                const email = document.getElementById('loginEmail').value;
-                const password = document.getElementById('loginPassword').value;
+                trigger.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        e.stopPropagation();
 
-                if (email === '123' && password === '123') {
-                    showNotification('Connexion réussie! Redirection...', 'success');
-                    setTimeout(() => window.location.href = 'admin.html', 1500);
-                    return;
-                }
+                        // Fermer les autres dropdowns
+                        dropdowns.forEach(other => {
+                            if (other !== dropdown && other.classList.contains('active')) {
+                                other.classList.remove('active');
+                                other.querySelector('.dropdown-menu').style.maxHeight = '0px';
+                            }
+                        });
 
-                try {
-                    await auth.login(email, password);
-                    showNotification(`Bienvenue ${email} !`, 'welcome');
-                    setTimeout(() => {
-                        closeAuthModal();
-                        location.reload();
-                    }, 1500);
-                } catch (error) {
-                    showNotification('Email ou mot de passe incorrect', 'error');
-                }
-            }
-
-            async function handleRegister(e) {
-                e.preventDefault();
-                const name = document.getElementById('registerName').value;
-                const email = document.getElementById('registerEmail').value;
-                const password = document.getElementById('registerPassword').value;
-
-                try {
-                    await auth.register(email, password, name);
-                    showNotification(`Compte créé avec succès ! Bienvenue ${name}`, 'success');
-                    setTimeout(() => toggleAuthForm('login'), 1500);
-                } catch (error) {
-                    showNotification(error.message || 'Erreur lors de la création du compte', 'error');
-                }
-            }
-
-            function updateUserInterface() {
-                if (auth.isLoggedIn()) {
-                    authBtn.style.display = 'none';
-                    userMenu.style.display = 'block';
-                    const user = auth.getCurrentUser();
-                    userMenu.querySelector('.user-name').textContent = user.name;
-                    userMenu.querySelector('.user-email').textContent = user.email;
-                } else {
-                    authBtn.style.display = 'block';
-                    userMenu.style.display = 'none';
-                    authBtn.onclick = () => showAuthModal('login');
-                }
-            }
-
-            // Gestion du menu utilisateur
-            if (userTrigger) {
-                userTrigger.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    userMenu.classList.toggle('open');
+                        // Toggle du dropdown actuel
+                        dropdown.classList.toggle('active');
+                        if (dropdown.classList.contains('active')) {
+                            menu.style.maxHeight = menu.scrollHeight + 'px';
+                        } else {
+                            menu.style.maxHeight = '0px';
+                        }
+                    }
                 });
-            }
-
-            document.addEventListener('click', (e) => {
-                if (userMenu && !userMenu.contains(e.target)) {
-                    userMenu.classList.remove('open');
-                }
             });
+        }
 
-            // Initialisation
-            initAuth();
+        // Gestion des liens d'ancrage sur mobile
+        function initMobileAnchors() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        closeMobileMenu();
+                        
+                        const targetId = anchor.getAttribute('href');
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            setTimeout(() => {
+                                targetElement.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                            }, 300);
+                        }
+                    }
+                });
+            });
+        }
+
+        // Initialisation mobile
+        handleMobileMenu();
+        initMobileDropdowns();
+        initMobileAnchors();
+        
+        // Gestion de l'orientation
+        window.addEventListener('orientationchange', () => {
+            closeMobileMenu();
+            setTimeout(() => {
+                window.scrollTo(0, window.pageYOffset);
+            }, 300);
         });
 
-        // Fonctions globales nécessaires pour les appels HTML
-        window.showAuthModal = function(type = 'login') {
-            document.getElementById('authModal').classList.add('active');
-            toggleAuthForm(type);
+        // Gestion de l'authentification
+        function initAuth() {
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('registerForm').addEventListener('submit', handleRegister);
+            updateUserInterface();
         }
 
-        window.closeAuthModal = function() {
-            document.getElementById('authModal').classList.remove('active');
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (email === '123' && password === '123') {
+                showNotification('Connexion réussie! Redirection...', 'success');
+                setTimeout(() => window.location.href = 'admin.html', 1500);
+                return;
+            }
+
+            try {
+                await auth.login(email, password);
+                showNotification(`Bienvenue ${email} !`, 'welcome');
+                setTimeout(() => {
+                    closeAuthModal();
+                    location.reload();
+                }, 1500);
+            } catch (error) {
+                showNotification('Email ou mot de passe incorrect', 'error');
+            }
         }
 
-        window.toggleAuthForm = function(type) {
-            const loginForm = document.getElementById('loginForm');
-            const registerForm = document.getElementById('registerForm');
-            loginForm.style.display = type === 'login' ? 'block' : 'none';
-            registerForm.style.display = type === 'register' ? 'block' : 'none';
+        async function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            try {
+                await auth.register(email, password, name);
+                showNotification(`Compte créé avec succès ! Bienvenue ${name}`, 'success');
+                setTimeout(() => toggleAuthForm('login'), 1500);
+            } catch (error) {
+                showNotification(error.message || 'Erreur lors de la création du compte', 'error');
+            }
         }
 
-        window.handleLogout = function() {
-            auth.logout();
-            window.location.reload();
+        function updateUserInterface() {
+            if (auth.isLoggedIn()) {
+                authBtn.style.display = 'none';
+                userMenu.style.display = 'block';
+                const user = auth.getCurrentUser();
+                userMenu.querySelector('.user-name').textContent = user.name;
+                userMenu.querySelector('.user-email').textContent = user.email;
+            } else {
+                authBtn.style.display = 'block';
+                userMenu.style.display = 'none';
+                authBtn.onclick = () => showAuthModal('login');
+            }
         }
 
-        function showNotification(message, type = 'success') {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : 
-                              type === 'error' ? 'exclamation-circle' : 
-                              'user-circle'}"></i>
-                <div class="notification-content">
-                    <p>${message}</p>
-                </div>
-            `;
-
-            document.querySelectorAll('.notification').forEach(n => n.remove());
-            document.body.appendChild(notification);
-            
-            requestAnimationFrame(() => notification.classList.add('show'));
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => notification.remove(), 500);
-            }, 3000);
+        // Gestion du menu utilisateur
+        if (userTrigger) {
+            userTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                userMenu.classList.toggle('open');
+            });
         }
+
+        document.addEventListener('click', (e) => {
+            if (userMenu && !userMenu.contains(e.target)) {
+                userMenu.classList.remove('open');
+            }
+        });
+
+        // Initialisation
+        initAuth();
+    });
+
+    // Fonctions globales nécessaires pour les appels HTML
+    window.showAuthModal = function(type = 'login') {
+        document.getElementById('authModal').classList.add('active');
+        toggleAuthForm(type);
+    }
+
+    window.closeAuthModal = function() {
+        document.getElementById('authModal').classList.remove('active');
+    }
+
+    window.toggleAuthForm = function(type) {
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        loginForm.style.display = type === 'login' ? 'block' : 'none';
+        registerForm.style.display = type === 'register' ? 'block' : 'none';
+    }
+
+    window.handleLogout = function() {
+        auth.logout();
+        window.location.reload();
+    }
+
+    function showNotification(message, type = 'success') {
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 
+                          type === 'error' ? 'exclamation-circle' : 
+                          'user-circle'}"></i>
+            <div class="notification-content">
+                <p>${message}</p>
+            </div>
+        `;
+
+        document.querySelectorAll('.notification').forEach(n => n.remove());
+        document.body.appendChild(notification);
+        
+        requestAnimationFrame(() => notification.classList.add('show'));
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 500);
+        }, 3000);
+    }
     </script>
     <script src="app.js"></script>
 
