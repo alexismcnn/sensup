@@ -1583,3 +1583,143 @@ footer .social-links a:hover {
         min-height: -webkit-fill-available;
     }
 }
+
+/* ...existing code... */
+
+@media (max-width: 768px) {
+    /* Réduction globale */
+    :root {
+        --radius: 8px;
+    }
+
+    /* Ajustement textes */
+    h1 {
+        font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
+    }
+
+    h2 {
+        font-size: clamp(1.5rem, 5vw, 2rem) !important;
+    }
+
+    h3 {
+        font-size: 1.2rem !important;
+    }
+
+    p, li {
+        font-size: 0.95rem !important;
+    }
+
+    /* Ajustement images et cards */
+    .logo-image {
+        height: 60px !important;
+    }
+
+    .about-image-item {
+        max-height: 150px !important;
+    }
+
+    .team-image {
+        max-height: 160px !important;
+    }
+
+    .service-card {
+        padding: 1.25rem !important;
+    }
+
+    .service-card i {
+        font-size: 1.5rem !important;
+    }
+
+    /* Ajustement espacements */
+    section {
+        padding: 3rem 0 !important;
+    }
+
+    .container {
+        width: calc(100% - 2rem) !important;
+    }
+
+    .hero {
+        padding: 5rem 0 3rem !important;
+    }
+
+    .about-stats .stat-number {
+        font-size: 2rem !important;
+    }
+
+    /* Ajustement grilles */
+    .services-grid,
+    .team-grid,
+    .activities-list,
+    .about-image-grid {
+        gap: 1rem !important;
+    }
+
+    /* Ajustement partenaires */
+    .partner-item {
+        min-width: 100px !important;
+        max-width: 140px !important;
+        padding: 0.5rem !important;
+    }
+
+    /* Ajustement boutons */
+    .cta-button, 
+    .contact-btn {
+        padding: 0.75rem 1.25rem !important;
+        font-size: 0.95rem !important;
+    }
+
+    /* Ajustement formulaires */
+    .form-group input,
+    .form-group textarea {
+        padding: 0.75rem !important;
+        font-size: 0.95rem !important;
+    }
+
+    /* Ajustement footer */
+    footer {
+        font-size: 0.8rem !important;
+    }
+
+    footer .social-links a {
+        font-size: 1.2rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustements supplémentaires pour très petits écrans */
+    .container {
+        width: calc(100% - 1.5rem) !important;
+    }
+
+    h1 {
+        font-size: clamp(1.6rem, 5vw, 2rem) !important;
+    }
+
+    .partner-item {
+        min-width: 80px !important;
+        max-width: 120px !important;
+    }
+
+    .about-image-grid {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+
+    .about-image-item {
+        max-height: 180px !important;
+    }
+
+    .notification {
+        padding: 0.75rem 1rem !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Fix iOS */
+@supports (-webkit-touch-callout: none) {
+    @media (max-width: 768px) {
+        .nav-links {
+            padding-bottom: calc(2rem + env(safe-area-inset-bottom)) !important;
+        }
+    }
+}
